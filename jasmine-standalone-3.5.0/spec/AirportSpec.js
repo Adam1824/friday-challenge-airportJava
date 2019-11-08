@@ -30,4 +30,15 @@ describe('Airport', function() {
       expect(airport.hanger).not.toContain(plane);
     });
   });
+
+  describe('Prevent landing when the airport is full', function() {
+    it('cannot land a plane when the hanger is full', function() {
+      for(var i = 0; i < airport.DEFAULT_CAPACITY; i++) {
+        console.log(i)
+        airport.land(plane)
+      };
+      console.log(airport.hanger)
+      expect(function(){ airport.land(plane); }).toThrowError('hanger full...unable to land plane');
+    });
+  });
 });
