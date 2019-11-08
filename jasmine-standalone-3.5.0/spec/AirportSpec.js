@@ -3,11 +3,14 @@
 describe('Airport', function() {
   var airport;
   var plane;
+  var weather;
 
 
   beforeEach(function() {
     airport = new Airport();
-    plane = jasmine.createSpy('plane')
+    plane = jasmine.createSpy('plane');
+    // weather = jasmine.createSpyObj('weather', ['isStormy'])
+    weather = new Weather();
   });
 
   describe('Airport can have a hanger', function() {
@@ -35,10 +38,8 @@ describe('Airport', function() {
   describe('Prevent landing when the airport is full', function() {
     it('cannot land a plane when the hanger is full', function() {
       for(var i = 0; i < airport.DEFAULT_CAPACITY; i++) {
-        console.log(i)
         airport.land(plane)
       };
-      console.log(airport.hanger)
       expect(function(){ airport.land(plane); }).toThrowError('hanger full...unable to land plane');
     });
   });
@@ -50,6 +51,16 @@ describe('Airport', function() {
     it('can be overridden', function() {
       airport.DEFAULT_CAPACITY = 5
       expect(airport.DEFAULT_CAPACITY).toEqual(5)
+    });
+  });
+
+  describe('when weather is stomry', function() {
+    it('a plane cannot takeoff', function() {
+      weather = weather.isStormy()
+      if (weather === false){
+        weather = true
+      }
+      expect(function(){ airport.takeoff(plane, weather); }).toThrowError('cannot take off due to stormy weather')
     });
   });
 });
