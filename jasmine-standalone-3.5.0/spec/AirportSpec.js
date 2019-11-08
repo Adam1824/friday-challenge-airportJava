@@ -4,6 +4,7 @@ describe('Airport', function() {
   var airport;
   var plane;
 
+
   beforeEach(function() {
     airport = new Airport();
     plane = jasmine.createSpy('plane')
@@ -39,6 +40,16 @@ describe('Airport', function() {
       };
       console.log(airport.hanger)
       expect(function(){ airport.land(plane); }).toThrowError('hanger full...unable to land plane');
+    });
+  });
+
+  describe('Airport can have a default capacity which can be overridden', function() {
+    it('has a default capacity', function() {
+      expect(airport.DEFAULT_CAPACITY).toBeDefined()
+    });
+    it('can be overridden', function() {
+      airport.DEFAULT_CAPACITY = 5
+      expect(airport.DEFAULT_CAPACITY).toEqual(5)
     });
   });
 });

@@ -1,8 +1,10 @@
 'use strict';
+const DEFAULT_CAPACITY = 20;
 
-function Airport(){
+
+function Airport(cap = DEFAULT_CAPACITY){
   this.hanger = [];
-  this.DEFAULT_CAPACITY = 20;
+  this.DEFAULT_CAPACITY = cap;
 }
 
 Airport.prototype.land = function(plane) {
