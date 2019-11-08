@@ -7,7 +7,10 @@ function Airport(cap = DEFAULT_CAPACITY){
   this.DEFAULT_CAPACITY = cap;
 }
 
-Airport.prototype.land = function(plane) {
+Airport.prototype.land = function(plane, weather_status) {
+  if(weather_status === true) {
+    throw new Error('cannot land due to stomry weather')
+  }
   if(this.hanger.length === this.DEFAULT_CAPACITY) {
     throw new Error('hanger full...unable to land plane')
   }

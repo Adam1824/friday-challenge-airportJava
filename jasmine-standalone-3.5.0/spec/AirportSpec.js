@@ -56,11 +56,18 @@ describe('Airport', function() {
 
   describe('when weather is stomry', function() {
     it('a plane cannot takeoff', function() {
-      weather = weather.isStormy()
-      if (weather === false){
-        weather = true
+      weather = weather.isStormy();
+      if(weather === false) {
+        weather = true;
       }
       expect(function(){ airport.takeoff(plane, weather); }).toThrowError('cannot take off due to stormy weather')
     });
+    it('a plane cannot land', function() {
+      weather = weather.isStormy();
+      if(weather === false) {
+        weather = true;
+      }
+      expect(function(){ airport.land(plane, weather); }).toThrowError('cannot land due to stomry weather')
+    })
   });
 });
