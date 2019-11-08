@@ -1,4 +1,4 @@
-# friday-challenge-airportJava
+# friday-challenge-airportJavaScript
 
 ## Learning a new language
 ### My process
