@@ -19,6 +19,15 @@ describe('Airport', function() {
     it('a plane can land at an airport', function() {
       airport.land(plane);
       expect(airport.hanger).toContain(plane)
-    })
+    });
+  });
+
+  describe('A plane can take off from the airport', function() {
+    it('can take off a plane', function(){
+      airport.land(plane);
+      airport.takeoff(plane);
+
+      expect(airport.hanger).not.toContain(plane);
+    });
   });
 });
